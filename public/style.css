@@ -1,0 +1,1941 @@
+/* --- 1. BASES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- 2. COULEURS & AMBIANCE (Béton & Chêne) --- */
+:root {
+
+    /* --- 2. COULEURS & AMBIANCE (Béton & Chêne) --- */
+    :root {
+        /* --- TEKIYO SIGNATURE: EMOTIONAL PHYSICS --- */
+        --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+        --transition-slow: 0.8s var(--ease-out-expo);
+        --transition-medium: 0.5s var(--ease-out-expo);
+        --transition-fast: 0.3s var(--ease-out-expo);
+
+        /* Scandinavian base tones */
+        --bg-concrete: #F7F7F5;
+        --bg-white: #FFFFFF;
+        --text-dark: #1E1E1E;
+        --accent-jungle: #0B6B3A;
+        --accent-wood: #4A2F21;
+        --accent-dark: #2E1F17;
+        --muted: #7A807F;
+        --cream: #F6EFE6;
+    }
+
+    /* L'accolade se ferme ICI, après TOUTES les variables */
+
+    /* APPLICATION CHIRURGICALE (En dehors du bloc root) */
+    .overlay-page,
+
+    .nav-drawer {
+        transition: transform var(--transition-slow) !important;
+    }
+
+    /* Scandinavian base tones */
+    --bg-concrete: #F7F7F5;
+    /* Le Blanc pour les cartes */
+    --bg-white: #FFFFFF;
+
+    /* Texte principal (doux, très lisible) */
+    --text-dark: #1E1E1E;
+
+    /* Accent: jungle vif et bois brut */
+    --accent-jungle: #0B6B3A;
+    /* jungle vivid */
+    --accent-wood: #4A2F21;
+    /* raw wood */
+    --accent-dark: #2E1F17;
+    /* deep wood for CTAs */
+    --muted: #7A807F;
+    --cream: #F6EFE6;
+
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg-concrete);
+    color: var(--text-dark);
+}
+
+/* On met les titres en couleur sombre par défaut */
+h1,
+h2,
+h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--text-dark);
+}
+
+/* --- 2. HEADER --- */
+/* --- HEADER TON SUR TON (Discret) --- */
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background-color: var(--bg-concrete);
+    /* Même couleur que le fond */
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    /* Petite ligne subtile */
+}
+
+header.scrolled {
+    padding: 15px 50px;
+    background-color: rgba(242, 240, 235, 0.95);
+    /* Légère transparence au scroll */
+}
+
+/* --- LE LOGO (Style Signature) --- */
+.header-logo {
+    font-family: 'Playfair Display', serif;
+    /* Police chic */
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    /* Espacement élégant */
+    text-transform: uppercase;
+    color: var(--text-dark);
+    /* Anthracite sur fond béton */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.header-logo:hover {
+    color: var(--accent-jungle);
+}
+
+header.scrolled .header-logo {
+    transform: scale(0.9);
+    /* Le logo devient subtilement plus petit */
+    letter-spacing: 1.5px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #000;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--accent-jungle);
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(11, 107, 58, 0.3);
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.cart-badge.pulse {
+    animation: cartBadgePulse 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@keyframes cartBadgePulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(11, 107, 58, 0.3);
+    }
+
+    50% {
+        transform: scale(1.35);
+        box-shadow: 0 8px 20px rgba(11, 107, 58, 0.5);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(11, 107, 58, 0.3);
+    }
+}
+
+/* --- 3. GRILLE & PAGES --- */
+#mainContainer {
+    padding: 100px 40px 40px;
+    min-height: 100vh;
+}
+
+.gallery-page {
+    display: none;
+    animation: fadeIn 0.6s ease;
+}
+
+.gallery-page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 40vh 40vh;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Styles Carrés */
+/* --- RESTAURATION TEKIYO : AUTHENTIQUE & EDGE GLOW --- */
+
+.corner {
+    position: relative;
+    height: 100%;
+    border-radius: 28px !important;
+    /* Arrondi Bento élégant */
+    overflow: hidden;
+    background: #000;
+    cursor: pointer;
+    /* Physique Émotionnelle : Transition longue et soyeuse */
+    transition: transform 0.9s cubic-bezier(0.19, 1, 0.22, 1),
+        box-shadow 0.9s cubic-bezier(0.19, 1, 0.22, 1) !important;
+}
+
+/* L'image de fond retrouve sa clarté totale */
+.corner-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    /* Pas de flou par défaut pour garder les couleurs vives */
+    transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Overlay de texte : On utilise un dégradé invisible qui ne ternit pas l'image */
+.corner-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px !important;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 60%) !important;
+}
+
+.corner-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem !important;
+    color: #FFFFFF !important;
+    margin: 0;
+    line-height: 1.1;
+    font-weight: 400;
+}
+
+.corner-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    margin-bottom: 6px;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+}
+
+/* --- EFFET AU SURVOL (TEKIYO SIGNATURE) --- */
+
+.corner:hover {
+    transform: scale(1.01) translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+.corner:hover .corner-bg {
+    transform: scale(1.08);
+    /* Zoom lent et immersif */
+}
+
+/* Optionnel : Une légère bordure lumineuse qui apparaît au survol */
+.corner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 28px;
+    z-index: 3;
+    transition: border 0.6s ease;
+    pointer-events: none;
+}
+
+.corner:hover::after {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* L'effet Liquid Edge */
+}
+
+/* --- NOUVEAU DESIGN SLOTS VIDES (SILENCE & MATIÈRE) --- */
+.empty-slot {
+    background: #F5F5F6;
+    /* Teinte Soie Grise */
+    border: none;
+    /* On supprime les pointillés amateurs */
+    cursor: default;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 30px rgba(30, 30, 30, 0.02);
+    /* Effet concave subtil */
+    transition: background 0.6s ease;
+}
+
+.empty-slot:hover {
+    background: #E8E8EB;
+    /* Variation presque imperceptible au survol */
+}
+
+/* On neutralise l'overlay sombre des corners classiques pour les slots vides */
+.empty-slot .corner-content {
+    background: none;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.empty-slot .corner-title {
+    color: var(--muted);
+    /* Gris Apple */
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    /* Plus moderne pour le teaser */
+    opacity: 0.6;
+}
+
+/* Petit détail UX : On ajoute un léger flou au survol */
+.empty-slot:hover .corner-title {
+    opacity: 0.8;
+}
+
+/* Pagination */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 60px;
+}
+
+.page-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: #e0e0e0;
+    color: #666;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+.page-dot:hover {
+    background: #d0d0d0;
+}
+
+.page-dot.active {
+    background: #1d1d1f;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* --- 4. FOOTER --- */
+footer {
+    border-top: 1px solid #e0e0e0;
+    padding: 60px 0 20px;
+    color: #666;
+    background: #fff;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+.footer-col h4 {
+    font-size: 0.8rem;
+    color: #1d1d1f;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-link {
+    display: block;
+    text-decoration: none;
+    color: #86868b;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+
+.info-link:hover {
+    color: var(--accent-jungle);
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+/* --- 5. OVERLAYS --- */
+.overlay-page {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    z-index: 200;
+    transform: translateY(100%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-y: auto;
+}
+
+.overlay-page.active {
+    transform: translateY(0);
+}
+
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    background: #f5f5f7;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.catalog-header {
+    text-align: center;
+    padding: 100px 20px 60px;
+}
+
+.catalog-header h1 {
+    font-family: 'Playfair Display';
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 60px 40px;
+    padding: 0 40px 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- CARTES PRODUITS (Catalogue) --- */
+/* --- CARTES PRODUITS (Cadres Blancs) --- */
+.product-card {
+    background-color: var(--bg-white);
+    /* Fond Blanc */
+    padding: 30px;
+    border-radius: 6px;
+    /* Angles un peu plus nets */
+    text-align: center;
+    transition: transform 0.3s ease;
+    /* Pas de bordure, juste le contraste blanc/gris */
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    /* Petit effet de lévitation */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    /* Ombre très douce */
+}
+
+.product-card h3 {
+    margin-top: 15px;
+    font-size: 1.1rem;
+}
+
+.product-card p {
+    color: var(--accent-wood);
+    /* Le prix en couleur "Chêne" */
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.product-img {
+    width: 100%;
+    height: 380px;
+    /* Plus grand pour plus d'impact */
+    object-fit: cover;
+    border-radius: 12px;
+    /* Rayon plus subtil Apple-like */
+    margin-bottom: 20px;
+    background: #f0f0f0;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.03);
+    /* Zoom subtil et élégant */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.product-card h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #1d1d1f;
+}
+
+.product-card p {
+    font-size: 0.95rem;
+    color: #86868b;
+}
+
+/* Bouton "Voir Détails" : Sous le texte, style bouton pillule élégant */
+.btn-add {
+    position: relative;
+    /* On retire le positionnement absolu sur l'image */
+    margin-top: 15px;
+    background: transparent;
+    color: #1d1d1f;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid #e0e0e0;
+    /* Bordure fine grise */
+    opacity: 1;
+    /* Toujours visible */
+    transform: none;
+    /* Pas de déplacement initial */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Bouton Acheter (petit) à côté de Voir Détails */
+.btn-buy {
+    background: var(--accent-jungle);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.btn-buy:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(88, 110, 99, 0.12);
+}
+
+/* Au survol de la carte, le bouton devient noir */
+.product-card:hover .btn-add {
+    background: #1d1d1f;
+    color: white;
+    border-color: #1d1d1f;
+    transform: translateY(-2px);
+    /* Petit effet de levier */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-add:hover {
+    background: #333;
+    transform: scale(1.05);
+}
+
+.info-content {
+    max-width: 800px;
+    margin: 100px auto;
+    padding: 0 40px;
+    line-height: 1.8;
+    color: #333;
+}
+
+/* --- MODULE PANIER : COUTURE IMMERSIVE & LIQUID GLASS --- */
+
+/* 1. L'OVERLAY (Le flou de fond fluide) */
+.cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.12);
+    /* Voile ultra-léger */
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 9998;
+    transition: all 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Activation du flou quand le panier est ouvert */
+body.cart-open .cart-overlay {
+    opacity: 1;
+    visibility: visible;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+/* ===== 1. PHYSIQUE ÉMOTIONNELLE (Transitions Fluides) ===== */
+@keyframes cartSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(80px) scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes itemFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* ===== 2. LIQUID GLASS (Matières & Transparence) ===== */
+.cart-modal {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    bottom: 30px;
+    width: 480px;
+    height: calc(100vh - 60px);
+    z-index: 10000;
+
+    /* Liquid Glass Effect */
+    background: rgba(248, 248, 246, 0.5);
+    backdrop-filter: blur(60px) saturate(180%) brightness(1.1) contrast(0.95);
+    -webkit-backdrop-filter: blur(60px) saturate(180%) brightness(1.1) contrast(0.95);
+
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50px;
+    box-shadow:
+        0 8px 32px 0 rgba(31, 38, 135, 0.07),
+        inset 0 0 20px rgba(255, 255, 255, 0.3);
+
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(80px) scale(0.92) rotateY(10deg);
+    transition: all 0.85s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.cart-modal.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0) scale(1) rotateY(0deg);
+}
+
+/* Flou du reste du site */
+body.cart-open>main,
+body.cart-open>header,
+body.cart-open>nav,
+body.cart-open>footer {
+    filter: blur(8px) brightness(0.95);
+    transition: filter 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    pointer-events: none;
+}
+
+/* ===== 3. TYPOGRAPHIE HIGH-FASHION ===== */
+.cart-header {
+    padding: 60px 55px 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.cart-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.8rem;
+    font-weight: 400;
+    letter-spacing: -3px;
+    color: #0a0a0a;
+    line-height: 1;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.cart-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 25px 0;
+    scroll-behavior: smooth;
+}
+
+.cart-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.cart-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.cart-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    transition: background 0.3s;
+}
+
+.cart-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.cart-items-list {
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ===== 4. DESIGN BENTO (Articles avec coins arrondis) ===== */
+.cart-item {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 18px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 28px;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    align-items: center;
+    animation: itemFadeIn 0.6s ease-out forwards;
+}
+
+.cart-item:hover {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+}
+
+.cart-item-image-wrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.cart-item:hover .cart-item-image {
+    transform: scale(1.08);
+}
+
+.cart-item-placeholder {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.cart-item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cart-item-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0a0a0a;
+    letter-spacing: -0.4px;
+    line-height: 1.3;
+}
+
+.cart-item-qty {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+}
+
+.qty-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    font-size: 1rem;
+    color: #0a0a0a;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.qty-btn:hover {
+    background: rgba(11, 107, 58, 0.1);
+    border-color: rgba(11, 107, 58, 0.3);
+    color: #0B6B3A;
+    transform: scale(1.1);
+}
+
+.qty-value {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0a0a0a;
+    min-width: 25px;
+    text-align: center;
+}
+
+.cart-item-price-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.cart-item-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: #0B6B3A;
+    letter-spacing: -0.5px;
+}
+
+.cart-item-remove {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(200, 0, 0, 0.2);
+    background: rgba(200, 0, 0, 0.04);
+    cursor: pointer;
+    color: #c00000;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.cart-item-remove:hover {
+    background: #c00000;
+    color: white;
+    border-color: #c00000;
+    transform: scale(1.15) rotate(90deg);
+}
+
+/* État vide du panier */
+.cart-empty.active {
+    display: flex !important;
+}
+
+.cart-empty {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 40px;
+    flex-direction: column;
+}
+
+.empty-state {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.empty-state svg {
+    color: rgba(0, 0, 0, 0.15);
+}
+
+.empty-state p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+}
+
+/* ===== 5. MICRO-INTERACTIONS ===== */
+.cart-footer {
+    padding: 25px 30px 40px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cart-footer.active {
+    display: flex;
+}
+
+.cart-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+}
+
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px 0;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #555;
+    transition: all 0.3s ease;
+}
+
+.summary-row.total {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 14px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0a0a0a;
+    letter-spacing: -0.3px;
+}
+
+.btn-checkout {
+    width: 100%;
+    height: 76px;
+    background: linear-gradient(135deg, #0B6B3A 0%, #094D2A 100%);
+    color: white;
+    border-radius: 999px;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    box-shadow:
+        0 20px 50px rgba(11, 107, 58, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-checkout::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    transition: left 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.btn-checkout:hover::before {
+    left: 100%;
+}
+
+.btn-checkout:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+        0 30px 70px rgba(11, 107, 58, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-checkout:active {
+    transform: translateY(-4px) scale(0.99);
+}
+
+.btn-continue {
+    width: 100%;
+    height: 56px;
+    background: transparent;
+    color: #0B6B3A;
+    border: 1.5px solid rgba(11, 107, 58, 0.4);
+    border-radius: 999px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-continue:hover {
+    background: rgba(11, 107, 58, 0.08);
+    border-color: #0B6B3A;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(11, 107, 58, 0.15);
+}
+
+/* Badge du panier avec animation pulse */
+.cart-badge {
+    animation: pulse 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Bouton fermer : la version améliorée se trouve plus bas dans le fichier
+   (design haut-de-gamme : bois profond + cream, coins arrondis, ombre interne) */
+
+/* --- 8. MENU LATÉRAL --- */
+.nav-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 2500;
+    padding: 60px 40px;
+    transform: translateX(-100%);
+    transition: transform 0.5s;
+    border-right: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nav-drawer.active {
+    transform: translateX(0);
+}
+
+.nav-links {
+    list-style: none;
+    margin-top: 40px;
+}
+
+.nav-links li {
+    margin-bottom: 25px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #1d1d1f;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    transition: 0.3s;
+    display: block;
+}
+
+.nav-item:hover {
+    color: var(--accent-jungle);
+    transform: translateX(10px);
+}
+
+.close-btn-nav {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #888;
+}
+
+.nav-footer {
+    font-size: 0.8rem;
+    color: #aaa;
+    text-align: center;
+}
+
+.overlay-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 2400;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+    backdrop-filter: blur(2px);
+}
+
+.overlay-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* --- FICHE PRODUIT STYLE APPLE --- */
+
+/* Fond flouté */
+.overlay-page {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+.product-detail-container {
+    max-width: 1100px;
+    margin: 60px auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    padding: 40px;
+    align-items: center;
+    height: 80vh;
+}
+
+/* Animation Image */
+.pdp-image-col {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.overlay-page.active .pdp-image-col {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+.pdp-image-col img {
+    width: 100%;
+    max-height: 600px;
+    object-fit: contain;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+/* Animation Textes */
+.pdp-info-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pdp-anim-text {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.overlay-page.active .pdp-info-col h2 {
+    transition-delay: 0.1s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.overlay-page.active .pdp-price-row {
+    transition-delay: 0.2s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.overlay-page.active #pdp-desc {
+    transition-delay: 0.3s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.overlay-page.active .delivery-box {
+    transition-delay: 0.4s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.overlay-page.active #pdp-add-btn {
+    transition-delay: 0.5s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Typographie & Style */
+.pdp-info-col h2 {
+    font-size: 3.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #1d1d1f;
+    line-height: 1.1;
+}
+
+.pdp-price-ttc {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #1d1d1f;
+}
+
+.pdp-price-ht {
+    font-size: 1.1rem;
+    color: #86868b;
+    margin-left: 10px;
+}
+
+#pdp-desc {
+    font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #646464;
+    margin: 22px 0 28px;
+    font-weight: 400;
+    max-width: 60ch;
+    letter-spacing: 0.2px;
+    /* Subtle left accent to fit the site's material language */
+    padding-left: 14px;
+    border-left: 2px solid rgba(11, 107, 58, 0.06);
+}
+
+/* Small helper to make the description visually lighter on small screens */
+@media (max-width: 900px) {
+    #pdp-desc {
+        max-width: 100%;
+        padding-left: 0;
+        border-left: none;
+        font-size: 1rem;
+        color: #5c5c5c;
+    }
+}
+
+.close-cart-btn {
+    --btn-size: 48px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: var(--btn-size);
+    height: var(--btn-size);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--accent-dark);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(6px) saturate(140%);
+    -webkit-backdrop-filter: blur(6px) saturate(140%);
+    box-shadow: 0 12px 30px rgba(10, 10, 10, 0.12), inset 0 -6px 14px rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+    transition: transform 0.22s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.22s, background 0.18s;
+    overflow: visible;
+}
+
+.close-cart-btn:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 18px 38px rgba(10, 10, 10, 0.16), inset 0 -6px 18px rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.close-cart-btn svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+    stroke: currentColor;
+    stroke-width: 1.6;
+}
+
+.btn-checkout {
+    /* --- ESTHÉTIQUE --- */
+    font-size: 1rem;
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    width: 100%;
+    box-shadow: 0 10px 28px rgba(95, 120, 108, 0.08);
+    transition: all 0.28s ease;
+
+    /* --- REND LE BOUTON CLIQUABLE (IMPORTANT) --- */
+    cursor: pointer;
+    position: relative;
+    /* Indispensable pour que le z-index fonctionne */
+    z-index: 2147483647;
+    /* Le chiffre maximum possible : il passe au-dessus de TOUT */
+    pointer-events: auto;
+    /* Force la détection du clic */
+    display: block;
+    /* Assure qu'il prend bien la place */
+}
+
+/* Ajoute ça pour qu'on voit bien quand on passe la souris dessus */
+.btn-checkout:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(95, 120, 108, 0.15);
+}
+
+/* Primary large Add-to-cart button on product page */
+.btn-add-big {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--accent-jungle);
+    color: #fff;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: none;
+    cursor: pointer;
+    box-shadow: 0 10px 24px rgba(11, 107, 58, 0.12);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.btn-add-big:hover {
+    transform: translateY(-3px);
+    background: #094D2A;
+    box-shadow: 0 18px 36px rgba(11, 107, 58, 0.18);
+}
+
+.btn-add-big:focus {
+    outline: 3px solid rgba(11, 107, 58, 0.18);
+    outline-offset: 2px;
+}
+
+.btn-add-big .btn-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    display: inline-block;
+    vertical-align: middle;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+}
+
+@media (max-width: 900px) {
+    .product-detail-container {
+        grid-template-columns: 1fr;
+        height: auto;
+        padding: 20px;
+        margin-top: 50px;
+    }
+
+    .pdp-image-col img {
+        max-height: 300px;
+    }
+
+    .pdp-info-col h2 {
+        font-size: 2.5rem;
+    }
+}
+
+/* --- LIVRAISON STYLE "CHIC & ÉPURÉ" --- */
+.delivery-box {
+    margin-bottom: 30px;
+}
+
+.delivery-box h4 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.delivery-option {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border: 1px solid #e0e0e0;
+    /* Bordure grise très fine */
+    border-radius: 8px;
+    /* Coins légèrement arrondis */
+    margin-bottom: 10px;
+    cursor: pointer;
+    background: white;
+    transition: all 0.2s ease;
+}
+
+.delivery-option:hover {
+    border-color: var(--accent-jungle);
+    /* Devient accent sauge au survol */
+}
+
+/* QUAND C'EST SÉLECTIONNÉ */
+.delivery-option.selected {
+    border: 2px solid var(--accent-jungle);
+    background: rgba(159, 184, 163, 0.06);
+}
+
+/* Le petit rond (Faux bouton radio) */
+.radio-circle {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    margin-right: 15px;
+    position: relative;
+}
+
+/* Le point à l'intérieur quand c'est coché */
+.delivery-option.selected .radio-circle {
+    border-color: var(--accent-jungle);
+}
+
+.delivery-option.selected .radio-circle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: var(--accent-jungle);
+    border-radius: 50%;
+}
+
+/* Textes */
+.del-details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1rem;
+    color: #333;
+}
+
+.del-price {
+    font-weight: 600;
+}
+
+/* --- L'IMAGE VOLANTE (LE DANSEUR) --- */
+.flyer-img {
+    position: fixed;
+    z-index: 9999;
+    pointer-events: none;
+    /* Intouchable pendant le vol */
+    border-radius: 12px;
+    /* On garde la douceur des angles */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    /* Une ombre portée pour l'effet "lévitation" */
+
+    /* C'EST ICI QUE RÉSIDE L'HARMONIE : */
+    /* Une transition longue (1.2s) et une courbe "Expo" très élégante */
+    transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+    transform-origin: center center;
+}
+
+/* --- L'ACCUEIL DU PANIER (LA PULSATION) --- */
+@keyframes softPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+
+    /* Le panier respire pour accueillir l'objet */
+    100% {
+        transform: scale(1);
+    }
+}
+
+.cart-badge.pulse {
+    animation: softPulse 0.6s ease-out forwards;
+    background-color: var(--accent-jungle) !important;
+}
+
+/* --- ANIMATION "FLY" CORRIGÉE (VISIBILITÉ MAXIMALE) --- */
+.flyer-img {
+    position: fixed;
+    /* Reste accroché à l'écran */
+    z-index: 99999 !important;
+    /* PASSE DEVANT TOUT, MÊME LES MODALES */
+    pointer-events: none;
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    /* Grosse ombre pour le contraste */
+    transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
+    /* Mouvement fluide */
+    transform-origin: center center;
+}
+
+/* L'icône panier qui réagit à l'arrivée */
+@keyframes cartPop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.5);
+        color: var(--accent-jungle);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.cart-badge.pulse {
+    animation: cartPop 0.4s ease-out;
+    background-color: var(--accent-jungle) !important;
+}
+
+/* --- MODALE DE CONFIRMATION --- */
+.confirm-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* Fond sombre */
+    z-index: 2000;
+    /* Au-dessus de tout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.confirm-modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.confirm-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.confirm-modal.active .confirm-content {
+    transform: scale(1);
+}
+
+.confirm-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn-primary {
+    background: #1d1d1f;
+    color: white;
+    padding: 15px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #1d1d1f;
+    padding: 15px;
+    border-radius: 30px;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-secondary:hover {
+    background: #f5f5f7;
+}
+
+/* --- PAGES D'INFORMATION (STYLE ÉDITORIAL) --- */
+
+.info-wrapper {
+    max-width: 700px;
+    margin: 100px auto 40px auto;
+    /* Marge haut pour laisser respirer sous le bouton fermer */
+    padding: 0 30px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards 0.3s;
+    /* Apparition douce */
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.info-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    /* Très gros titre */
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: #1d1d1f;
+}
+
+.info-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--accent-jungle);
+    margin: 0 auto 40px auto;
+}
+
+.info-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    /* Interligne important pour la lisibilité */
+    color: #555;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+.signature {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-top: 50px;
+    color: #1d1d1f;
+}
+
+/* Grille pour la page Atelier */
+.atelier-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 50px;
+    text-align: left;
+}
+
+.atelier-item h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.atelier-item p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Page Contact */
+.contact-link {
+    display: block;
+    font-size: 1.5rem;
+    color: #1d1d1f;
+    text-decoration: none;
+    margin-bottom: 50px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.contact-link:hover {
+    color: var(--accent-jungle);
+}
+
+.info-details-box {
+    margin-bottom: 50px;
+    padding: 30px;
+    background: #fbfbfd;
+    border-radius: 12px;
+}
+
+/* Newsletter */
+.newsletter-box {
+    border-top: 1px solid #eee;
+    padding-top: 40px;
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.input-group input {
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    width: 250px;
+    outline: none;
+}
+
+.input-group button {
+    background: #1d1d1f;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    .info-title {
+        font-size: 2.2rem;
+    }
+
+    .atelier-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .input-group {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input-group input {
+        width: 100%;
+    }
+}
+
+/* --- BOUTONS JUNGLE & TEXTES --- */
+
+/* 1. Tous les boutons d'action deviennent Vert Jungle */
+.btn-add,
+/* Bouton "Voir détails" du catalogue */
+.btn-add-big,
+/* Gros bouton "Ajouter au panier" */
+.btn-checkout,
+/* Bouton "Payer" */
+.btn-primary,
+/* Bouton confirmation "Voir Panier" */
+.cart-badge {
+    /* La bulle du panier */
+    background-color: var(--accent-jungle) !important;
+    color: white !important;
+    transition: background 0.3s ease;
+}
+
+/* 2. Au survol, ils deviennent encore plus profonds (comme l'ombre des feuilles) */
+.btn-add:hover,
+.btn-add-big:hover,
+.btn-checkout:hover,
+.btn-primary:hover {
+    background-color: #1a291d !important;
+    /* Vert presque noir */
+    transform: translateY(-2px);
+    /* Petit effet de clic */
+}
+
+/* 3. On force les titres à bien prendre la couleur Chêne Brûlé */
+h1,
+h2,
+h3,
+h4,
+body,
+.nav-item {
+    color: var(--text-dark) !important;
+}
+
+/* --- CORRECTION : FICHE PRODUIT AU-DESSUS DU MENU --- */
+.overlay-page {
+    /* On s'assure que la page produit passe DEVANT le menu (qui est à 1000) */
+    z-index: 2000 !important;
+
+    /* On rajoute un peu d'espace en haut pour ne pas coller au bord */
+    padding-top: 20px;
+}
+
+/* On stylise et positionne le bouton Fermer pour qu'il soit bien visible */
+#closeProductBtn,
+.close-btn {
+    position: absolute;
+    top: 30px;
+    /* On le descend un peu */
+    right: 30px;
+    /* On le décale du bord droit */
+    z-index: 2001;
+    /* Toujours au-dessus de tout */
+
+    /* Petit style bonus pour qu'il soit beau */
+    background: transparent;
+    border: 1px solid var(--text-dark);
+    color: var(--text-dark);
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#closeProductBtn:hover,
+.close-btn:hover {
+    background: var(--text-dark);
+    color: white;
+}
+
+/* --- LIVRAISON (Boutons Radio Vert Jungle) --- */
+
+/* 1. Change la couleur du petit rond (le "bouton radio") quand il est coché */
+.delivery-option input[type="radio"]:checked {
+    accent-color: var(--accent-jungle);
+    /* Utilise ton Vert Jungle profond */
+}
+
+/* 2. Change aussi la couleur de la bordure de toute la boîte quand elle est sélectionnée */
+.delivery-option.selected {
+    border-color: var(--accent-jungle) !important;
+    /* Force la bordure en vert */
+}
+
+/* --- RÉÉCRITURE COMPLÈTE DU BOUTON RADIO --- */
+
+/* 1. On cache le bouton d'origine mais on garde sa place */
+.delivery-option input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-dark);
+    /* Bordure Vert Jungle */
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: white;
+    transition: all 0.2s ease;
+}
+
+/* 2. Le point au milieu quand c'est coché */
+.delivery-option input[type="radio"]:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--accent-dark);
+    /* Point Vert Jungle */
+}
+
+/* 3. Effet visuel sur la boîte sélectionnée */
+.delivery-option.selected {
+    border: 2px solid var(--accent-dark) !important;
+    /* Cadre accent */
+    background-color: rgba(89, 112, 103, 0.05) !important;
+    /* Fond très léger */
+}
+
+/* 4. On s'assure que le texte reste bien lisible */
+.delivery-option span {
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+/* --- LA SOLUTION RADICALE POUR LA LIVRAISON --- */
+
+/* 1. On force la bordure du cadre sélectionné */
+div.delivery-option.selected {
+    border: 2px solid var(--accent-dark) !important;
+    background-color: rgba(89, 112, 103, 0.05) !important;
+}
+
+/* 2. On transforme totalement le bouton radio */
+.delivery-option input[type="radio"] {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    /* On efface le bouton du navigateur */
+
+    width: 20px !important;
+    height: 20px !important;
+    border: 2px solid var(--accent-dark) !important;
+    /* Contour accent */
+    border-radius: 50% !important;
+    background-color: #fff !important;
+    cursor: pointer !important;
+    position: relative !important;
+    outline: none !important;
+    display: inline-block !important;
+    margin-right: 12px !important;
+}
+
+/* 3. On dessine le point intérieur vert quand c'est coché */
+.delivery-option input[type="radio"]:checked::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 10px !important;
+    height: 10px !important;
+    background-color: var(--accent-dark) !important;
+    /* Point accent */
+    border-radius: 50% !important;
+    display: block !important;
+}
+
+/* --- TEKIYO ANIMATION : CART PULSE --- */
+@keyframes bentoPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.4);
+        background-color: #1a291d;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.cart-badge.pulse {
+    animation: bentoPulse 0.6s var(--ease-out-expo);
+}

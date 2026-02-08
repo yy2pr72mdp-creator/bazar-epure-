@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAZAR ÉPURÉ</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <button class="icon-btn" id="burgerBtn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 12H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M3 6H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M3 18H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+        </button>
+        <div class="header-logo" onclick="window.location.reload()">BAZAR ÉPURÉ</div>
+        <div class="header-right">
+            <button class="icon-btn" id="cartTrigger">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M16 11V7C16 4.79 14.21 3 12 3C9.79 3 8 4.79 8 7V11M5 9H19L20 21H4L5 9Z"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <div class="cart-badge" id="cartCount">0</div>
+            </button>
+        </div>
+    </header>
+
+    <nav class="nav-drawer" id="navDrawer">
+        <button class="close-btn-nav" id="closeNavBtn">✕</button>
+        <ul class="nav-links">
+            <li><a href="#" data-page="home" class="nav-item">Accueil</a></li>
+            <li><a href="#" data-page="concept" class="nav-item">Le Concept</a></li>
+            <li><a href="#" data-page="atelier" class="nav-item">L'Atelier</a></li>
+            <li><a href="#" data-page="livraison" class="nav-item">Livraisons</a></li>
+            <li><a href="#" data-page="contact" class="nav-item">Nous écrire</a></li>
+        </ul>
+        <div class="nav-footer">Bazar Épuré © 2024</div>
+    </nav>
+    <div class="overlay-backdrop" id="navBackdrop"></div>
+
+    <main id="mainContainer">
+
+        <section class="gallery-page active" id="page-1">
+            <div class="gallery-grid">
+                <div class="corner" data-collection="argile">
+                    <div class="corner-bg" style="background-image: url('img/carafe.jpg');"></div>
+                    <div class="corner-content"><span class="corner-subtitle">Collection 01</span>
+                        <h2 class="corner-title">Art de la Table</h2>
+                    </div>
+                </div>
+                <div class="corner" data-collection="lin">
+                    <div class="corner-bg" style="background-image: url('img/savonnerie.jpg');"></div>
+                    <div class="corner-content">
+                        <span class="corner-subtitle">L'authenticité du sud</span>
+                        <h2 class="corner-title">Savonnerie Marseillaise</h2>
+                    </div>
+                </div>
+                <div class="corner" data-collection="lumiere">
+                    <div class="corner-bg"
+                        style="background-image: url('https://images.pexels.com/photos/1112598/pexels-photo-1112598.jpeg?auto=compress&cs=tinysrgb&w=800');">
+                    </div>
+                    <div class="corner-content"><span class="corner-subtitle">Collection 03</span>
+                        <h2 class="corner-title">Lumière</h2>
+                    </div>
+                </div>
+                <div class="corner" data-collection="brut">
+                    <div class="corner-bg"
+                        style="background-image: url('https://images.pexels.com/photos/1350789/pexels-photo-1350789.jpeg?auto=compress&cs=tinysrgb&w=800');">
+                    </div>
+                    <div class="corner-content"><span class="corner-subtitle">Collection 04</span>
+                        <h2 class="corner-title">Brut</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-page" id="page-2">
+            <div class="gallery-grid">
+                <div class="corner" data-collection="vintage">
+                    <div class="corner-bg"
+                        style="background-image: url('https://images.pexels.com/photos/6976094/pexels-photo-6976094.jpeg?auto=compress&cs=tinysrgb&w=800');">
+                    </div>
+                    <div class="corner-content"><span class="corner-subtitle">Collection 05</span>
+                        <h2 class="corner-title">Vintage</h2>
+                    </div>
+                </div>
+                <div class="corner empty-slot">
+                    <div class="corner-content">
+                        <h2 class="corner-title">Bientôt...</h2>
+                    </div>
+                </div>
+                <div class="corner empty-slot">
+                    <div class="corner-content">
+                        <h2 class="corner-title">Bientôt...</h2>
+                    </div>
+                </div>
+                <div class="corner empty-slot">
+                    <div class="corner-content">
+                        <h2 class="corner-title">Bientôt...</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery-page" id="page-3">
+            <div class="gallery-grid">
+                <div class="corner empty-slot">
+                    <div class="corner-content">
+                        <h2 class="corner-title">Bientôt...</h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="pagination-controls">
+            <button class="page-dot active" onclick="switchPage(1)">1</button>
+            <button class="page-dot" onclick="switchPage(2)">2</button>
+            <button class="page-dot" onclick="switchPage(3)">3</button>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>À Propos</h4>
+                    <a href="#" class="info-link" data-page="concept">Le Concept</a>
+                    <a href="#" class="info-link" data-page="atelier">L'Atelier</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Service Client</h4>
+                    <a href="#" class="info-link" data-page="livraison">Livraisons & Retours</a>
+                    <a href="#" class="info-link" data-page="contact">Nous Contacter</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Légal</h4>
+                    <a href="#" class="info-link" data-page="livraison">CGV / Mentions</a>
+                </div>
+            </div>
+            <div class="footer-bottom">© 2024 BAZAR ÉPURÉ — Paris</div>
+        </footer>
+    </main>
+
+    <div class="overlay-page" id="catalog">
+        <button class="close-btn" id="closeCatalogBtn">Fermer</button>
+        <div class="catalog-header">
+            <h1 id="brand-title">TITRE</h1>
+            <p id="brand-desc">Description</p>
+        </div>
+        <div class="products-grid" id="products"></div>
+    </div>
+
+    <div class="overlay-page info-page" id="page-concept">
+        <button class="close-btn" onclick="closeAllPages()">Fermer</button>
+        <div class="info-wrapper">
+            <h1 class="info-title">L'Éloge du Peu.</h1>
+            <div class="info-divider"></div>
+            <p class="info-text">
+                Dans un monde qui crie, nous avons choisi de chuchoter. <br>
+                <strong>Bazar Épuré</strong> n'est pas une boutique, c'est une respiration.
+            </p>
+            <p class="info-text">
+                Nous croyons en la beauté de l'utile. Chaque objet de notre collection est choisi pour sa capacité à
+                traverser le temps, sans jamais lasser le regard.
+                <br><br>
+                Du lin lavé, de la terre cuite, du bois massif. <br>
+                Rien de plus, mais rien de moins.
+            </p>
+            <div class="signature">B.E.</div>
+        </div>
+    </div>
+
+    <div class="overlay-page info-page" id="page-atelier">
+        <button class="close-btn" onclick="closeAllPages()">Fermer</button>
+        <div class="info-wrapper">
+            <h1 class="info-title">Matières Brutes.</h1>
+            <div class="info-divider"></div>
+            <div class="atelier-grid">
+                <div class="atelier-item">
+                    <h3>La Terre</h3>
+                    <p>Nos céramiques sont tournées à la main en Provence. Chaque irrégularité est la signature de
+                        l'artisan, la preuve que la main a tremblé, aimé, façonné.</p>
+                </div>
+                <div class="atelier-item">
+                    <h3>Le Lin</h3>
+                    <p>Cultivé en France, tissé avec patience. Notre linge de maison s'adoucit à chaque lavage, devenant
+                        une seconde peau pour votre intérieur.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay-page info-page" id="page-contact">
+        <button class="close-btn" onclick="closeAllPages()">Fermer</button>
+        <div class="info-wrapper">
+            <h1 class="info-title">Nous Écrire.</h1>
+            <div class="info-divider"></div>
+            <p class="info-text">
+                Une question sur un objet ? Un mot doux ?<br>
+                Nous sommes là pour vous.
+            </p>
+            <a href="mailto:bonjour@bazarepure.com" class="contact-link">bonjour@bazarepure.com</a>
+
+            <div class="info-details-box">
+                <h3>Showroom (Sur RDV)</h3>
+                <p>12 Rue du Panier<br>13002 Marseille, France</p>
+            </div>
+
+            <div class="newsletter-box">
+                <p>Inscrivez-vous à notre correspondance :</p>
+                <div class="input-group">
+                    <input type="email" placeholder="Votre email...">
+                    <button>S'inscrire</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay-page info-page" id="page-livraison">
+        <button class="close-btn" onclick="closeAllPages()">Fermer</button>
+        <div class="info-wrapper">
+            <h1 class="info-title">Expéditions.</h1>
+            <div class="info-divider"></div>
+            <p class="info-text">
+                Nous prenons le temps d'emballer chaque objet avec soin, sans plastique superflu.
+                <br><br>
+                <strong>France :</strong> 3 à 5 jours ouvrés.<br>
+                <strong>Europe :</strong> 5 à 7 jours ouvrés.
+            </p>
+        </div>
+    </div>
+    <!-- Cart Overlay Backdrop -->
+    <div class="cart-overlay"></div>
+
+    <!-- Panier Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h3>Votre Panier</h3>
+            <button class="close-cart-btn" id="closeCartBtn" aria-label="Fermer le panier">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M6 6L18 18M6 18L18 6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+        <div class="cart-content">
+            <div id="cartItemsList" class="cart-items-list"></div>
+            <div class="cart-empty" id="cartEmpty">
+                <div class="empty-state">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                        <path d="M16 11V7C16 4.79 14.21 3 12 3C9.79 3 8 4.79 8 7V11M5 9H19L20 21H4L5 9Z"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <p>Votre panier est vide</p>
+                </div>
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter">
+            <div class="cart-divider"></div>
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Sous-total</span>
+                    <span id="cartSubtotal">0,00€</span>
+                </div>
+                <div class="summary-row">
+                    <span>Frais de port</span>
+                    <span id="cartShipping">5,00€</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="cartTotal">5,00€</span>
+                </div>
+            </div>
+            <button class="btn-checkout" id="checkoutBtn">Procéder au paiement</button>
+            <button class="btn-continue" id="continueShopping">Continuer les achats</button>
+        </div>
+    </div>
+
+    <!-- Confirmation modal shown after Add to Cart -->
+    <div class="confirm-modal" id="confirmModal">
+        <div class="confirm-content">
+            <h3>Article ajouté au panier</h3>
+            <p>Souhaitez‑vous continuer vos achats ou procéder au paiement ?</p>
+            <div class="confirm-buttons">
+                <button class="btn-secondary" onclick="closeConfirmModal()">Continuer mes achats</button>
+                <button class="btn-primary" onclick="goToCart()">Procéder au paiement</button>
+            </div>
+        </div>
+    </div>
+    <div class="overlay-page" id="productPage">
+        <button class="close-btn" id="closeProductBtn">Fermer</button>
+
+        <div class="product-detail-container">
+            <div class="pdp-image-col">
+                <img id="pdp-img" src="" alt="Produit">
+            </div>
+
+            <div class="pdp-info-col">
+                <h2 id="pdp-title" class="pdp-anim-text">Nom du Produit</h2>
+
+                <div class="pdp-price-row pdp-anim-text">
+                    <span id="pdp-price" class="pdp-price-ttc">0€</span>
+                    <span id="pdp-ht" class="pdp-price-ht">HT : 0€</span>
+                </div>
+
+                <p id="pdp-desc" class="pdp-anim-text">Description du produit...</p>
+
+                <div class="delivery-box pdp-anim-text">
+                    <h4>Mode de livraison</h4>
+
+                    <div class="delivery-option selected" id="del-standard" onclick="chooseDelivery('standard')">
+                        <div class="radio-circle"></div>
+                        <div class="del-details">
+                            <span class="del-name">Standard (3-5 jours)</span>
+                            <span class="del-price">5,00€</span>
+                        </div>
+                    </div>
+
+                    <div class="delivery-option" id="del-express" onclick="chooseDelivery('express')">
+                        <div class="radio-circle"></div>
+                        <div class="del-details">
+                            <span class="del-name">Express (24h)</span>
+                            <span class="del-price">12,00€</span>
+                        </div>
+                    </div>
+
+                    <p class="tva-info">Expédié avec soin depuis Marseille.</p>
+                </div>
+
+                <button id="pdp-add-btn" class="btn-add-big pdp-anim-text" aria-label="Ajouter au panier">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+                        <path d="M3 3h2l1.4 9.2A2 2 0 0 0 8.3 14h9.4a2 2 0 0 0 2-1.6l1.2-6.6H6.1" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <circle cx="10" cy="19" r="1.3" fill="currentColor" />
+                        <circle cx="17" cy="19" r="1.3" fill="currentColor" />
+                    </svg>
+                    <span>Ajouter au panier</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
